@@ -18,6 +18,7 @@
   "author": "king of my Queen 💍💜#8275",
   "license": "ISC",
   "dependencies": {
-    "discord.js": "^11.2.1"
+    "discord.js": "^11.2.1",
+    "express": "^4.16.2"
   }
 }
