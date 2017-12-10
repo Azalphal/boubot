@@ -1,5 +1,5 @@
 exports.run = (client, message) => {
-    message.channel.send(`Pong! \`${Date.now() - message.createdTimestamp} ms\``)
+    message.channel.send(`Pong, \`${Date.now() - message.createdTimestamp} ms\``)
   };
   
   exports.conf = {

@@ -15,8 +15,7 @@ setInterval(() => {
 
 const discord = require('discord.js');
 const client = new discord.Client();
-// When not hosting on glitch.com 
- const config = require('./config.json');
+const config = require('./config.json');
 const fs = require('fs');
 const moment = require('moment');
 require('./util/eventLoader')(client);
@@ -39,7 +38,7 @@ client.aliases = new discord.Collection();
 fs.readdir('./commands/', (err, files) => {
   if (err) console.error(err);
   files.forEach(f => {
-    let props = require(`./commands/${f}`);
+    let props = require(`./commands/${files}`);
     client.commands.set(props.help.name, props);
     props.conf.aliases.forEach(alias => {
       client.aliases.set(alias, props.help.name);
@@ -47,29 +46,7 @@ fs.readdir('./commands/', (err, files) => {
   });
 });
 
-client.reload = command => {
-  return new Promise((resolve, reject) => {
-    try {
-      delete require.cache[require.resolve(`./commands/${command}`)];
-      let cmd = require(`./commands/${command}`);
-      client.commands.delete(command);
-      client.aliases.forEach((cmd, alias) => {
-        if (cmd === command) client.aliases.delete(alias);
-      });
-      client.commands.set(command,cmd);
-      cmd.conf.aliases.forEach(alias => {
-        client.aliases.set(alias, cmd.help.name);
-      });
-      resolve();
-    } catch (e){
-      reject(e);
-    }
-  });
-};
-
 client.elevation = message => {
-  /* This function should resolve to an ELEVATION level which
-     is then sent to the command handler for verification*/
   let permlvl = 0;
   let mod_role = message.guild.roles.find('name', config.modrolename);
   if (mod_role && message.member.roles.has(mod_role.id)) permlvl = 2;
