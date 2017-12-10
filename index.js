@@ -48,6 +48,7 @@ fs.readdir('./commands/', (err, files) => {
   });
 });
 
+/*
 client.elevation = message => {
   let permlvl = 0;
   let mod_role = message.guild.roles.find('name', config.modrolename);
@@ -56,7 +57,7 @@ client.elevation = message => {
   if (admin_role && message.member.roles.has(admin_role.id)) permlvl = 3;
   if (message.author.id === config.ownerid) permlvl = 4;
   return permlvl;
-};
+};*/
 
 /*
 const prefix = ">";
