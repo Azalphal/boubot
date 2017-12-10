@@ -1,4 +1,4 @@
-const settings = require('../settings.json');
+const config = require('../config.json');
 module.exports = message => {
     let client = message.client;
     if (message.author.bot) return;

@@ -16,7 +16,7 @@ setInterval(() => {
 const discord = require('discord.js');
 const client = new discord.Client();
 // When not hosting on glitch.com 
- const settings = require('./settings.json');
+ const config = require('./config.json');
 const fs = require('fs');
 const moment = require('moment');
 require('./util/eventLoader')(client);
@@ -71,11 +71,11 @@ client.elevation = message => {
   /* This function should resolve to an ELEVATION level which
      is then sent to the command handler for verification*/
   let permlvl = 0;
-  let mod_role = message.guild.roles.find('name', settings.modrolename);
+  let mod_role = message.guild.roles.find('name', config.modrolename);
   if (mod_role && message.member.roles.has(mod_role.id)) permlvl = 2;
-  let admin_role = message.guild.roles.find('name', settings.adminrolename);
+  let admin_role = message.guild.roles.find('name', config.adminrolename);
   if (admin_role && message.member.roles.has(admin_role.id)) permlvl = 3;
-  if (message.author.id === settings.ownerid) permlvl = 4;
+  if (message.author.id === config.ownerid) permlvl = 4;
   return permlvl;
 };
 
@@ -107,4 +107,4 @@ client.on("message", (message) => {
 
 
 //client.login(process.env.TOKEN)
-client.login(settings.token);
+client.login(config.token);
