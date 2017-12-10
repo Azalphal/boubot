@@ -67,32 +67,31 @@ client.reload = command => {
   });
 };
 
-fs.readdir("./events/", (err, files) =>{
-  if (err) return console.error(err);
-  files.forEach(file => {
-    let eventFunction = require(`./events/${file}`);
-    let eventName = file.split(".")[0];
-    client.on(eventName, (...args) => eventFunction.run(client, ...args));
-  });
-});
-
-/*client.elevation = message => {
+client.elevation = message => {
+  /* This function should resolve to an ELEVATION level which
+     is then sent to the command handler for verification*/
   let permlvl = 0;
-  let mod_role
-}*/
+  let mod_role = message.guild.roles.find('name', settings.modrolename);
+  if (mod_role && message.member.roles.has(mod_role.id)) permlvl = 2;
+  let admin_role = message.guild.roles.find('name', settings.adminrolename);
+  if (admin_role && message.member.roles.has(admin_role.id)) permlvl = 3;
+  if (message.author.id === settings.ownerid) permlvl = 4;
+  return permlvl;
+};
 
+/*
 const prefix = ">";
 client.on("message", (message) => {
   if (!message.content.indexOf(prefix) !== 0 || message.author.bot) return;
 
-  /*if (message.content.startsWith(prefix + "ping")) {
+  if (message.content.startsWith(prefix + "ping")) {
     message.channel.send(`Pong! \`${Date.now() - message.createdTimestamp} ms\``);
   }
 
   if (message.content.startsWith(prefix + "av")) {
     let target = message.mentions.users.size === 0 ? message.author : message.guild.member(message.mentions.users.first()).user;
     return message.channel.send(target.avatarURL);
-  }*/
+  }
 
   const args = message.content.slice(config.prefix.length).trim().split(/ +/g);
   const command = args.shift().toLowerCase();
@@ -103,7 +102,7 @@ client.on("message", (message) => {
   } catch (err) {
     console.error(err);
   }
-});
+});*/
 
 
 
