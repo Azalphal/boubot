@@ -14,3 +14,9 @@ exports.conf = {
   aliases: [avi, avatar],
   permLevel: 0
 };
+
+exports.help = {
+  name: 'av',
+  description: 'av command.',
+  usage: 'av'
+};
