@@ -2,8 +2,8 @@ const config = require('../config.json');
 module.exports = message => {
     let client = message.client;
     if (message.author.bot) return;
-    if (!message.content.startwith(prefix)) return;
-    let command = message.content.split(' ')[0].slice(prefix.length);
+    if (!message.content.startwith(config.prefix)) return;
+    let command = message.content.split(' ')[0].slice(config.prefix.length);
     let params = message.content.split(' ').slice(1);
     let perms = client.elevation(message);
     let cmd;
