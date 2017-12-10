@@ -16,7 +16,7 @@ setInterval(() => {
 const discord = require('discord.js');
 const client = new discord.Client();
 // When not hosting on glitch.com 
-// const settings = require('./settings.json');
+ const settings = require('./settings.json');
 const fs = require('fs');
 const moment = require('moment');
 require('./util/eventLoader')(client);
@@ -34,15 +34,15 @@ client.on('ready', () => {
       `)
 });
 
-client.commands = new Discord.Collection();
-client.aliases = new Discord.Collection();
+client.commands = new discord.Collection();
+client.aliases = new discord.Collection();
 fs.readdir('./commands/', (err, files) => {
   if (err) console.error(err);
   files.forEach(f => {
     let props = require(`./commands/${f}`);
     client.commands.set(props.help.name, props);
     props.conf.aliases.forEach(alias => {
-      client.aliases.Set(alias, prop.help.name);
+      client.aliases.set(alias, props.help.name);
     });
   });
 });
