@@ -38,7 +38,7 @@ client.aliases = new discord.Collection();
 fs.readdir('./commands/', (err, files) => {
   if (err) console.error(err);
   files.forEach(f => {
-    let props = require(`./commands/${files}`);
+    let props = require(`./commands/${f}`);
     client.commands.set(props.help.name, props);
     props.conf.aliases.forEach(alias => {
       client.aliases.set(alias, props.help.name);
