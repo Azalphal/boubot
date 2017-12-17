@@ -15,7 +15,7 @@ setInterval(() => {
 
 const discord = require('discord.js');
 const client = new discord.Client();
-const config = require('./config.json');
+const config = require('./settings.json');
 const fs = require('fs');
 const moment = require('moment');
 require('.core/util/eventLoader.js')(client);
