@@ -18,11 +18,7 @@ const client = new discord.Client();
 const config = require('./config.json');
 const fs = require('fs');
 const moment = require('moment');
-require('./util/eventLoader')(client);
-
-const log = message => {
-  console.log(`[${moment().format('YYYY-MM-DD HH:mm:ss')}] ${message}`);
-};
+require('.core/util/eventLoader.js')(client);
 
 client.on('ready', () => {
   console.log(`
@@ -33,7 +29,38 @@ client.on('ready', () => {
       `)
 });
 
-client.commands = new discord.Collection();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*client.commands = new discord.Collection();
 client.aliases = new discord.Collection();
 fs.readdir('./commands/', (err, files) => {
   if (err) console.error(err);
@@ -46,7 +73,7 @@ fs.readdir('./commands/', (err, files) => {
       client.aliases.set(alias, props.help.name);
     });
   });
-});
+});*/
 
 /*
 client.elevation = message => {
